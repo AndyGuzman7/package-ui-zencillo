@@ -14,7 +14,7 @@ class ControllerField {
 }
 
 extension CustomFormValidator on GlobalKey<FormState> {
-  Map<String, String?> validateAndGetErrors(
+  ResultValidate validateAndGetErrors(
       List<GlobalKey<FormFieldState>> fieldKeys) {
     final formState = currentState;
     final errors = <String, String?>{};
@@ -35,9 +35,16 @@ extension CustomFormValidator on GlobalKey<FormState> {
         }
       }
 
-      return isValid ? {} : errors;
+      return ResultValidate(errors: isValid ? {} : errors, isPassed: isValid);
     }
 
-    return {};
+    return ResultValidate(errors: {}, isPassed: false);
   }
+}
+
+class ResultValidate {
+  final Map<String, String?> errors;
+  final bool isPassed;
+
+  ResultValidate({required this.errors, required this.isPassed});
 }
