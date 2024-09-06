@@ -1,13 +1,13 @@
 import 'package:flutter/widgets.dart';
 
 class ControllerField {
-  TextEditingController _textEditingController = TextEditingController();
+  final _textEditingController = TextEditingController();
   final _fieldKey = GlobalKey<FormFieldState<String>>();
 
   TextEditingController get textEditingController => _textEditingController;
 
   set textEditingController(TextEditingController controller) {
-    _textEditingController = controller;
+    _textEditingController.text = controller.text;
   }
 
   GlobalKey<FormFieldState<String>> get fieldKey => _fieldKey;
