@@ -1,16 +1,20 @@
 import 'package:flutter/widgets.dart';
 
 class ControllerField {
-  final _textEditingController = TextEditingController();
+  TextEditingController _textEditingController = TextEditingController();
   final _fieldKey = GlobalKey<FormFieldState<String>>();
 
   TextEditingController get textEditingController => _textEditingController;
 
   set textEditingController(TextEditingController controller) {
-    _textEditingController.text = controller.text;
+    _textEditingController = controller;
   }
 
   GlobalKey<FormFieldState<String>> get fieldKey => _fieldKey;
+
+  set changeValue(String value) {
+    _textEditingController.text = value;
+  }
 }
 
 extension CustomFormValidator on GlobalKey<FormState> {

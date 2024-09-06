@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ui_zencillo/input/util_field.dart';
 
 class FieldCustom extends StatelessWidget {
@@ -6,21 +7,25 @@ class FieldCustom extends StatelessWidget {
     required this.controller,
     required this.validator,
     required this.onChanged,
-    required this.onFocusChange,
     required this.label,
+    this.onFocusChange,
     this.isLoading = false,
     this.isLabelTitle = false,
-    this.showDecoration = false,
+    this.showDecoration = true,
+    this.isActiveValidation = true,
+    this.inputFormatters,
     super.key,
   });
   final ControllerField controller;
   final String? Function(String?) validator;
   final void Function(String) onChanged;
-  final void Function(bool) onFocusChange;
+  final void Function(bool)? onFocusChange;
+  final List<TextInputFormatter>? inputFormatters;
   final bool isLoading;
   final String label;
   final bool isLabelTitle;
   final bool showDecoration;
+  final bool isActiveValidation;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,7 +53,8 @@ class FieldCustom extends StatelessWidget {
             onFocusChange: onFocusChange,
             child: TextFormField(
               key: controller.fieldKey,
-              validator: validator,
+              validator: isActiveValidation ? validator : null,
+              inputFormatters: inputFormatters,
               readOnly: isLoading,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               controller: controller.textEditingController,
