@@ -13,6 +13,7 @@ class FieldCustom extends StatelessWidget {
     this.isLabelTitle = false,
     this.showDecoration = true,
     this.isActiveValidation = true,
+    this.showError = false,
     this.inputFormatters,
     this.inputType,
     super.key,
@@ -27,6 +28,7 @@ class FieldCustom extends StatelessWidget {
   final String label;
   final bool isLabelTitle;
   final bool showDecoration;
+  final bool showError;
   final bool isActiveValidation;
   @override
   Widget build(BuildContext context) {
@@ -67,12 +69,14 @@ class FieldCustom extends StatelessWidget {
                   color: Colors.grey.shade400,
                 ),
                 errorText: null,
-                errorStyle: const TextStyle(
-                  color: Colors.transparent,
-                  fontSize: 0,
-                ),
-                focusedErrorBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
+                errorStyle: showError
+                    ? const TextStyle(
+                        color: Colors.transparent,
+                        fontSize: 0,
+                      )
+                    : null,
+                focusedErrorBorder: showError ? InputBorder.none : null,
+                errorBorder: showError ? InputBorder.none : null,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 suffixIcon: isLoading
