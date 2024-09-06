@@ -14,6 +14,7 @@ class FieldCustom extends StatelessWidget {
     this.showDecoration = true,
     this.isActiveValidation = true,
     this.inputFormatters,
+    this.inputType,
     super.key,
   });
   final ControllerField controller;
@@ -21,6 +22,7 @@ class FieldCustom extends StatelessWidget {
   final void Function(String) onChanged;
   final void Function(bool)? onFocusChange;
   final List<TextInputFormatter>? inputFormatters;
+  final TextInputType? inputType;
   final bool isLoading;
   final String label;
   final bool isLabelTitle;
