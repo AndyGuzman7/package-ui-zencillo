@@ -56,6 +56,7 @@ class FieldCustom extends StatelessWidget {
           child: FocusScope(
             onFocusChange: onFocusChange,
             child: TextFormField(
+              keyboardType: inputType,
               key: controller.fieldKey,
               validator: isActiveValidation ? validator : null,
               inputFormatters: inputFormatters,
@@ -69,14 +70,14 @@ class FieldCustom extends StatelessWidget {
                   color: Colors.grey.shade400,
                 ),
                 errorText: null,
-                errorStyle: showError
+                errorStyle: !showError
                     ? const TextStyle(
                         color: Colors.transparent,
                         fontSize: 0,
                       )
                     : null,
-                focusedErrorBorder: showError ? InputBorder.none : null,
-                errorBorder: showError ? InputBorder.none : null,
+                focusedErrorBorder: !showError ? InputBorder.none : null,
+                errorBorder: !showError ? InputBorder.none : null,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 suffixIcon: isLoading
